@@ -11,6 +11,10 @@
   </div>
   <div>
     <p>Add a comment:</p>
-    <%= render 'comments/form' %>
+    <%= form_for([song, @comment]) do |f| %>
+    <%= f.label :body, 'Comment:' %>
+    <%= f.text_area :body %>
+    <%= f.submit 'Save', class: "button-primary" %>
+    <% end %>
   </div>
 </li>
