@@ -1,7 +1,4 @@
 class Like < ActiveRecord::Base
   belongs_to :song
-
-  def count(song)
-    song.likes.count
-  end
+  validates :song_id, presence: true
 end

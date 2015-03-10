@@ -2,18 +2,20 @@ class LikesController < ApplicationController
   before_action :lookup_song
 
   def new
-    @like = @song.comments.new
+    @like = @song.likes.new
   end
 
   def create
-    @like = @song.comments.new(params[:song_id])
+    @like = @song.likes.new(params[:song_id])
 
     respond_to do |format|
-      format.js { }
-      format.html { redirect_to root_url, notice: 'Success! You liked the song' }
-    else
-      format.js { }
-      format.html { render 'new' }
+      if @like.save
+        format.js { }
+        format.html { redirect_to root_url, notice: 'Success! You liked the song' }
+      else
+        format.js { }
+        format.html { render 'new' }
+      end
     end
   end
 

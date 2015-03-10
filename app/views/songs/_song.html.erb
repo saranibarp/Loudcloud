@@ -1,0 +1,16 @@
+<li class="song" id="song-<%= song.id %>">
+  <div class="title"><%= song.title %></div>
+  <div class="player"><%= raw song.embed_code %></div> 
+  <div class="likes"><%= song.likes.count %><%= song.likes.count == 1 ? " like" : " likes" %></div>
+  <div class="comments-list">
+    <ul>
+      <% song.comments.recent.each do |comment| %>
+        <%= render comment %>
+      <% end %>
+    </ul>
+  </div>
+  <div>
+    <p>Add a comment:</p>
+    <%= render 'comments/form' %>
+  </div>
+</li>
