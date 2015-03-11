@@ -3,9 +3,7 @@
   <div class="player"><%= raw song.embed_code %></div> 
   <div class="likes"><span id="likes-for-<%= song.id %>"><%= song.likes.count %></span>  like(s)</div>
   <div class="click-like">
-    <%= form_for([song, @like], remote: true) do |f| %>
-      <%= f.submit 'Like', class: "button-primary likes-button", :id => song.id %>
-    <% end %>
+    <%= render partial: "likes/form", :locals => {:song => song, :like => @like} %>
   </div>
   <div>
     <p>What people think:</p>
@@ -17,9 +15,6 @@
   </div>
   <div class="comment-form">
     <p>Add a comment:</p>
-    <%= form_for([song, @comment], remote: true) do |f| %>
-    <%= f.text_area :body, class: "comment-body" %>
-    <%= f.submit 'Save', class: "button-primary" %>
-    <% end %>
+    <%= render partial: "comments/form", :locals => {:song => song, :comment => @comment} %>
   </div>
 </li>

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:new, :create]
   end
 
-  resources :comments
+  resources :comments, only: :destroy
 
   root 'songs#index'
 
