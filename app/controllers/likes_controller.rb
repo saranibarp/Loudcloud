@@ -1,13 +1,10 @@
 class LikesController < ApplicationController
-  before_action :lookup_song
+  before_action :lookup_song, :lookup_like
 
   def new
-    @like = @song.likes.new
   end
 
   def create
-    @like = @song.likes.new(params[:song_id])
-
     respond_to do |format|
       if @like.save
         format.js { }
@@ -23,5 +20,9 @@ class LikesController < ApplicationController
 
   def lookup_song
     @song = Song.find(params[:song_id])
+  end
+
+  def lookup_like
+    @like = @song.likes.new
   end
 end

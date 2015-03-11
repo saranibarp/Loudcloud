@@ -1,0 +1,3 @@
+var likes = $("#likes-for-<%= @like.song_id %>").text();
+
+$('#likes-for-<%= @like.song_id %>').text(parseInt(likes) + 1);

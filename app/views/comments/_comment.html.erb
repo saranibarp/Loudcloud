@@ -1,3 +1,8 @@
-<li class="comment">
-  <%= simple_format(comment.body + ' - ' + comment.created_at.to_formatted_s(:long))  %>
+<li class="comment-<%= comment.id %>">
+  <div class="comment-body">
+    <%= simple_format(comment.body + ' - <strong> ' + comment.created_at.to_formatted_s(:long) + '</strong>') %>
+  </div>
+  <div class="spam">
+    <%= link_to 'Mark as spam', comment_path(comment), method: :delete, :remote => true, :class => 'delete_comment' %>
+  </div>
 </li>

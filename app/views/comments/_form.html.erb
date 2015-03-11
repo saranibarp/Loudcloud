@@ -1,5 +1,5 @@
-<%= form_for([@song, @comment]) do |f| %>
+<%= form_for([@song, @comment], remote: true) do |f| %>
   <%= f.label :body, 'Comment:' %>
-  <%= f.text_area :body %>
+  <%= f.text_area :body, class: "comment-body" %>
   <%= f.submit 'Save', class: "button-primary" %>
 <% end %>

@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :lookup_song
+  before_action :lookup_song, except: [:destroy]
 
   def new
     @comment = @song.comments.new
@@ -16,6 +16,16 @@ class CommentsController < ApplicationController
         format.js { }
         format.html { render 'new' }
       end
+    end
+  end
+
+  def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+
+    respond_to do |format|
+      format.js { }
+      format.html { redirect_to root_url, notice: 'Comment marked as spam' }
     end
   end
 

@@ -1,19 +1,24 @@
 <li class="song" id="song-<%= song.id %>">
   <div class="title"><%= song.title %></div>
   <div class="player"><%= raw song.embed_code %></div> 
-  <div class="likes"><%= song.likes.count %><%= song.likes.count == 1 ? " like" : " likes" %></div>
-  <div class="comments-list">
-    <ul>
+  <div class="likes"><span id="likes-for-<%= song.id %>"><%= song.likes.count %></span>  like(s)</div>
+  <div class="click-like">
+    <%= form_for([song, @like], remote: true) do |f| %>
+      <%= f.submit 'Like', class: "button-primary likes-button", :id => song.id %>
+    <% end %>
+  </div>
+  <div>
+    <p>What people think:</p>
+    <ul class="comments-list-<%= song.id %>">
       <% song.comments.recent.each do |comment| %>
         <%= render comment %>
       <% end %>
     </ul>
   </div>
-  <div>
+  <div class="comment-form">
     <p>Add a comment:</p>
-    <%= form_for([song, @comment]) do |f| %>
-    <%= f.label :body, 'Comment:' %>
-    <%= f.text_area :body %>
+    <%= form_for([song, @comment], remote: true) do |f| %>
+    <%= f.text_area :body, class: "comment-body" %>
     <%= f.submit 'Save', class: "button-primary" %>
     <% end %>
   </div>
