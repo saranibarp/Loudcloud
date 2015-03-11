@@ -1,12 +1,13 @@
 <li class="song" id="song-<%= song.id %>">
-  <div class="title"><%= song.title %></div>
+  <h4 class="title"><%= song.title %></h4>
   <div class="player"><%= raw song.embed_code %></div> 
-  <div class="likes"><span id="likes-for-<%= song.id %>"><%= song.likes.count %></span>  like(s)</div>
-  <div class="click-like">
-    <%= render partial: "likes/form", :locals => {:song => song, :like => @like} %>
+  <div class="likes-box">
+    <div class="likes"><span id="likes-for-<%= song.id %>"><%= song.likes.count %></span>  like(s)</div>
+    <div class="click-like">
+      <%= render partial: "likes/form", :locals => {:song => song, :like => @like} %>
+    </div>
   </div>
-  <div>
-    <p>What people think:</p>
+  <div class="comments-box">
     <ul class="comments-list-<%= song.id %>">
       <% song.comments.recent.each do |comment| %>
         <%= render comment %>

@@ -13,3 +13,38 @@
  *= require_tree .
  *= require_self
  */
+
+.song-list 
+{
+  list-style-type: none;
+}
+
+.likes-box
+{
+  text-align: right;
+  width: 100%;
+}
+
+.likes 
+{
+  width: 70%;
+  margin: 0;
+  float: left;
+}
+
+.click-like
+{
+  width: 30%;
+  margin: 0;
+  float: left;
+}
+
+.comments-box 
+{
+  clear: both;
+}
+
+.spam
+{
+  float:right;
+}
